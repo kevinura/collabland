@@ -1,8 +1,20 @@
 {
   "functions": {
-    "assets/*.php": {"runtime": "vercel-php@0.5.2"},
+    "api/*.php": {
+      "runtime": "vercel-php@0.7.3"
+    }
   },
   "routes": [
-    { "handle": "filesystem" }
+    {
+      "src": "/(.*\\.(js|css|woff2|ttf|svg|png|jpg|jpeg|gif|ico|webp|avif))",
+      "headers": {
+        "Content-Type": "auto"
+      },
+      "dest": "public/$1"
+    },
+    {
+      "src": "^/$",
+      "dest": "/api/index.php"
+    }
   ]
 }
